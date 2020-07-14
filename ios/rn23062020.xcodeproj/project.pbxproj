@@ -20,6 +20,8 @@
 		70D27A09BD749875E7D17D7D /* libPods-rn23062020-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5709066C99266861DD1C2 /* libPods-rn23062020-tvOSTests.a */; };
 		E6021F09E0D20CD19A1ED86A /* libPods-rn23062020-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7A2533DE1923F6B0C3F707 /* libPods-rn23062020-tvOS.a */; };
 		F2835110136463CDB6306794 /* libPods-rn23062020.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A98E1FC8D613D740070C7042 /* libPods-rn23062020.a */; };
+		59390ED85F6A4AB3B1DD5EB8 /* SnackerComic_PerosnalUseOnly.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 219AC829071F4826A0152E35 /* SnackerComic_PerosnalUseOnly.ttf */; };
+		2B06B0F6078D4AB8A312B281 /* Senopathi Free Personal Use.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F27F373370E434EB60A21B7 /* Senopathi Free Personal Use.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EFF5709066C99266861DD1C2 /* libPods-rn23062020-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rn23062020-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53391C381B136BEDD25D15E /* Pods-rn23062020.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn23062020.debug.xcconfig"; path = "Target Support Files/Pods-rn23062020/Pods-rn23062020.debug.xcconfig"; sourceTree = "<group>"; };
+		219AC829071F4826A0152E35 /* SnackerComic_PerosnalUseOnly.ttf */ = {isa = PBXFileReference; name = "SnackerComic_PerosnalUseOnly.ttf"; path = "../src/assets/fonts/SnackerComic_PerosnalUseOnly.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1F27F373370E434EB60A21B7 /* Senopathi Free Personal Use.ttf */ = {isa = PBXFileReference; name = "Senopathi Free Personal Use.ttf"; path = "../src/assets/fonts/Senopathi Free Personal Use.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				7BA508A2AC31016340BC8C5B /* Pods */,
+				1A2E242CE9C24C2E86A41F74 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +202,16 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		1A2E242CE9C24C2E86A41F74 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				219AC829071F4826A0152E35 /* SnackerComic_PerosnalUseOnly.ttf */,
+				1F27F373370E434EB60A21B7 /* Senopathi Free Personal Use.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -340,6 +355,8 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				59390ED85F6A4AB3B1DD5EB8 /* SnackerComic_PerosnalUseOnly.ttf in Resources */,
+				2B06B0F6078D4AB8A312B281 /* Senopathi Free Personal Use.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
