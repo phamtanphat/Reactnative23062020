@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View , StyleSheet} from 'react-native'
+import { Text, View , StyleSheet , TouchableOpacity} from 'react-native'
 import { DimensionApp } from '../unit/dimension'
 
 export default class Main extends Component {
@@ -17,13 +17,38 @@ export default class Main extends Component {
                 {
                     words.map(word => {
                         return (
-                            <View style={styles.flexBoxText} key={word.id.toString()}>
-                                <Text style={styles.textStyleEn}> {word.en} </Text>
-                                <Text 
-                                    style={styles.textStyleVn}> 
-                                        {word.isMemorized ? '----' : word.vn} 
-                                </Text>
+                            <View 
+                                style={styles.flexBoxWord} 
+                                key={word.id.toString()}>
+                                <View style={styles.flexBoxElement}>
+                                    <Text style={styles.textStyleEn}> {word.en} </Text>
+                                    <Text 
+                                        style={styles.textStyleVn}> 
+                                            {word.isMemorized ? '----' : word.vn} 
+                                    </Text>
+                                </View>
+                                <View style={styles.flexBoxElement}>
+                                    <TouchableOpacity
+                                        style={
+                                            [styles.touchableIsMemorized , 
+                                                {backgroundColor : word.isMemorized ? '#2BA848' : '#DC3545'}
+                                            ]
+                                        }>
+                                        <Text 
+                                            style={styles.textStyleMemorized}> 
+                                            {word.isMemorized ? 'Forgot' : 'Memorized'}  
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        style={styles.touchableRemove}>
+                                        <Text 
+                                            style={styles.textStyleRemove}> 
+                                            Remove
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
+                           
                         )
                     })
                 }
@@ -36,18 +61,44 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
     container: {
        flex : 1,
+       marginHorizontal: 5
     },
-    flexBoxText: {
+    flexBoxWord: {
+        height : DimensionApp.getWidth() / 3,
+        flexDirection : 'column',
+        backgroundColor : '#b0bec5',
+        borderRadius : 10,
+        marginBottom : 10,
+        justifyContent : 'space-around'
+    },
+    flexBoxElement: {
         flexDirection : 'row',
         justifyContent : 'space-around'
     },
     textStyleEn : {
         color : '#2BA848',
-        fontSize : DimensionApp.getWidth() / 10
+        fontSize : DimensionApp.getWidth() / 12
     },
     textStyleVn : {
         color : '#DC3545',
-        fontSize : DimensionApp.getWidth() / 10
+        fontSize : DimensionApp.getWidth() / 12
+    },
+    touchableIsMemorized: {
+        padding : DimensionApp.getWidth() / 50 ,
+        borderRadius : 5,
+    },
+    touchableRemove: {
+        padding : DimensionApp.getWidth() / 50 ,
+        borderRadius : 5,
+        backgroundColor : '#E0A800'
+    },
+    textStyleMemorized: {
+        color: 'white',
+        fontSize : DimensionApp.getWidth() / 12
+    },
+    textStyleRemove: {
+        color: 'white',
+        fontSize : DimensionApp.getWidth() / 12 
     }
 })
 
