@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View , StyleSheet , TouchableOpacity} from 'react-native'
+import { Text, View , StyleSheet , TouchableOpacity , FlatList} from 'react-native'
 import { DimensionApp } from '../unit/dimension'
 
 export default class Main extends Component {
@@ -9,34 +9,35 @@ export default class Main extends Component {
             {id : 2 ,en : 'Two' , vn : 'Hai' , isMemorized : true},
             {id : 3 ,en : 'Three' , vn : 'Ba' , isMemorized : false},
             {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
-            {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},
-            
+            {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},      
         ]
         return (
             <View style={styles.container}>
-                {
-                    words.map(word => {
-                        return (
+                <FlatList
+                    data={words}
+                    extraData={words}
+                    keyExtractor={(item,index) => index.toString()}
+                    renderItem={({item}) => {
+                        return(
                             <View 
-                                style={styles.flexBoxWord} 
-                                key={word.id.toString()}>
+                                style={styles.flexBoxWord}>
                                 <View style={styles.flexBoxElement}>
-                                    <Text style={styles.textStyleEn}> {word.en} </Text>
+                                    <Text style={styles.textStyleEn}> {item.en} </Text>
                                     <Text 
                                         style={styles.textStyleVn}> 
-                                            {word.isMemorized ? '----' : word.vn} 
+                                            {item.isMemorized ? '----' : item.vn} 
                                     </Text>
                                 </View>
                                 <View style={styles.flexBoxElement}>
                                     <TouchableOpacity
                                         style={
                                             [styles.touchableIsMemorized , 
-                                                {backgroundColor : word.isMemorized ? '#2BA848' : '#DC3545'}
+                                                {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
                                             ]
                                         }>
                                         <Text 
                                             style={styles.textStyleMemorized}> 
-                                            {word.isMemorized ? 'Forgot' : 'Memorized'}  
+                                            {item.isMemorized ? 'Forgot' : 'Memorized'}  
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
@@ -48,10 +49,10 @@ export default class Main extends Component {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                           
                         )
-                    })
-                }
+                    }}
+                
+                />
                 
             </View>
         )

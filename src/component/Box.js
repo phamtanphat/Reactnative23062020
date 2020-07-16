@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View , StyleSheet , TouchableOpacity} from 'react-native'
-
+import Child from './Child';
 
 export default class Box extends Component {
     constructor(props){
@@ -10,8 +10,10 @@ export default class Box extends Component {
         }
     }
     render() {
+        console.log("Box")
         return (
             <View style={styles.container}>
+                <Child/>
                 <Text 
                     style={styles.textCount}> 
                     Count : {this.state.count} 
