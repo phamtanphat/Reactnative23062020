@@ -3,22 +3,40 @@ import { Text, View , StyleSheet , TouchableOpacity} from 'react-native'
 
 
 export default class Box extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            count : 0
+        }
+    }
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.textCount}> Count : 0 </Text>
+                <Text 
+                    style={styles.textCount}> 
+                    Count : {this.state.count} 
+                </Text>
                 <View style={styles.boxTouchable}>
                     <TouchableOpacity
+                        onPress={() => {
+                            this.setState({count : this.state.count + 1})
+                        }}
                         style={styles.touchableIncrease}
                     >
                         <Text>Increase</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
+                        onPress={() => {
+                            this.setState({count : this.state.count - 1})
+                        }}
                         style={styles.touchableDecrease}
                     >
-                        <Text>Decrease</Text>
+                        <Text>Decrease</Text>   
                     </TouchableOpacity>
                     <TouchableOpacity
+                        onPress={() => {
+                            this.setState({count : 0})
+                        }}
                         style={styles.touchableReset}
                     >
                         <Text>Increase</Text>
