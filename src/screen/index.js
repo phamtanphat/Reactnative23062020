@@ -3,19 +3,24 @@ import { Text, View , StyleSheet , TouchableOpacity , FlatList} from 'react-nati
 import { DimensionApp } from '../unit/dimension'
 
 export default class Main extends Component {
+    constructor(props){
+        super(props);
+        this.state= {
+            words: [
+                {id : 1 ,en : 'One' , vn : 'Mot' , isMemorized : false},
+                {id : 2 ,en : 'Two' , vn : 'Hai' , isMemorized : true},
+                {id : 3 ,en : 'Three' , vn : 'Ba' , isMemorized : false},
+                {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
+                {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},      
+            ]
+        }
+    }
     render() {
-        const words = [
-            {id : 1 ,en : 'One' , vn : 'Mot' , isMemorized : false},
-            {id : 2 ,en : 'Two' , vn : 'Hai' , isMemorized : true},
-            {id : 3 ,en : 'Three' , vn : 'Ba' , isMemorized : false},
-            {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
-            {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},      
-        ]
         return (
             <View style={styles.container}>
                 <FlatList
-                    data={words}
-                    extraData={words}
+                    data={this.state.words}
+                    extraData={this.state.words}
                     keyExtractor={(item,index) => index.toString()}
                     renderItem={({item}) => {
                         return(
