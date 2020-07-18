@@ -13,8 +13,11 @@ export default class Main extends Component {
                 {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
                 {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},
             ],
-            shouldShowForm : true
+            shouldShowForm : false
         }
+    }
+    toggleForm = () => {
+        this.setState({shouldShowForm : !this.state.shouldShowForm})
     }
     renderForm = () => {
         if (this.state.shouldShowForm){
@@ -37,6 +40,7 @@ export default class Main extends Component {
                             <Text style={styles.textTouchable}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={this.toggleForm}
                             style={styles.touchableCancel}
                         >
                             <Text style={styles.textTouchable}>Cancel</Text>
@@ -60,6 +64,7 @@ export default class Main extends Component {
             <View style={styles.container}>
                 {this.renderForm()}
                 <FlatList
+                    showsVerticalScrollIndicator={false}
                     data={this.state.words}
                     extraData={this.state.words}
                     keyExtractor={(item,index) => index.toString()}
