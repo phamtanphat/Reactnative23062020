@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View , StyleSheet , TouchableOpacity , FlatList , TextInput  } from 'react-native'
+import { 
+    Text, 
+    View , 
+    StyleSheet , 
+    TouchableOpacity , 
+    FlatList , 
+    TextInput ,
+    Alert
+} from 'react-native'
 import { DimensionApp } from '../unit/dimension'
 
 export default class Main extends Component {
@@ -13,7 +21,9 @@ export default class Main extends Component {
                 {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
                 {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},
             ],
-            shouldShowForm : false
+            shouldShowForm : false,
+            en : '',
+            vn : '',    
         }
     }
     toggleForm = () => {
@@ -35,6 +45,21 @@ export default class Main extends Component {
                     </View>
                     <View style={styles.containerTouchable}>
                         <TouchableOpacity
+                            onPress={() => {
+                                const { en , vn } = this.state
+                                if(en.length > 0 || vn.length > 0){
+                                        
+                                }else{
+                                    Alert.alert(
+                                        "Thong bao",
+                                        "Ban chua nhap du thong tin",
+                                        [
+                                            {text : 'Da hieu' , style : 'cancel'},
+                                        ],
+                                        { cancelable: false }
+                                    )
+                                }
+                            }}
                             style={styles.touchableAddword}
                         >
                             <Text style={styles.textTouchable}>Add word</Text>
@@ -84,7 +109,7 @@ export default class Main extends Component {
                                         onPress={() => {
                                             const newWords = this.state.words.map(word => {
                                                 if (word.id == item.id){
-                                                    return {...word , isMemorized : !item.isMemorized}
+                                                    return {...word , isMemorized : !word.isMemorized}
                                                 }
                                                 return word
                                             })
