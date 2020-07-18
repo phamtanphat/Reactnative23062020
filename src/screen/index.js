@@ -11,7 +11,7 @@ export default class Main extends Component {
                 {id : 2 ,en : 'Two' , vn : 'Hai' , isMemorized : true},
                 {id : 3 ,en : 'Three' , vn : 'Ba' , isMemorized : false},
                 {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
-                {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},      
+                {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},
             ]
         }
     }
