@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View , StyleSheet , TouchableOpacity , FlatList} from 'react-native'
+import { Text, View , StyleSheet , TouchableOpacity , FlatList , TextInput  } from 'react-native'
 import { DimensionApp } from '../unit/dimension'
 
 export default class Main extends Component {
@@ -12,12 +12,53 @@ export default class Main extends Component {
                 {id : 3 ,en : 'Three' , vn : 'Ba' , isMemorized : false},
                 {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
                 {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},
-            ]
+            ],
+            shouldShowForm : true
+        }
+    }
+    renderForm = () => {
+        if (this.state.shouldShowForm){
+            return (
+                <View >
+                    <View style={styles.containerTextInput}>
+                    <TextInput 
+                        onChangeText={text =>  this.state.en = text}
+                        placeholder="English"
+                        style={styles.textInput}/>
+                    <TextInput 
+                        onChangeText={text => this.state.vn = text}
+                        placeholder="Vietnamese"
+                        style={styles.textInput}/>
+                    </View>
+                    <View style={styles.containerTouchable}>
+                        <TouchableOpacity
+                            style={styles.touchableAddword}
+                        >
+                            <Text style={styles.textTouchable}>Add word</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.touchableCancel}
+                        >
+                            <Text style={styles.textTouchable}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                
+            );
+        } else {
+            return (
+                <TouchableOpacity
+                    style={styles.buttonOpenForm}
+                    onPress={this.toggleForm}>
+                    <Text style={styles.textOpenForm}>+</Text>
+                </TouchableOpacity>
+            )
         }
     }
     render() {
         return (
             <View style={styles.container}>
+                {this.renderForm()}
                 <FlatList
                     data={this.state.words}
                     extraData={this.state.words}
@@ -118,7 +159,51 @@ const styles = StyleSheet.create({
     textStyleRemove: {
         color: 'white',
         fontSize : DimensionApp.getWidth() / 12 
-    }
+    },
+    containerTextInput: {
+        width : '100%',
+        height: 150,
+        justifyContent : 'space-evenly'
+    },
+    textInput : {
+        borderWidth : 1,
+        height: 60,
+        fontSize : 20,
+        paddingHorizontal: 10,
+    },
+    touchableAddword : {
+        backgroundColor : '#218838',
+        padding : 15,
+        borderRadius : 10
+    },
+    textTouchable: {
+        color : 'white',
+        fontSize : 20,
+        fontWeight : '500'
+    },
+    touchableCancel: {
+        backgroundColor : 'red',
+        padding : 15,
+        borderRadius : 10
+    },
+    buttonOpenForm: {
+        width : '100%',
+        height : 50,
+        backgroundColor : '#45B157',
+        borderRadius : 5,
+        marginBottom : 10,
+        justifyContent : 'center',
+        alignItems : 'center'
+    },
+    textOpenForm: {
+        color : 'white',
+        fontSize : 30
+    },
+    containerTouchable: {
+        flexDirection : 'row',
+        justifyContent : 'space-evenly',
+        marginBottom : 10
+    },
 })
 
 

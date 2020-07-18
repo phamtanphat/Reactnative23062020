@@ -4,8 +4,8 @@ import { Text, View , TextInput , StyleSheet , TouchableOpacity} from 'react-nat
 export default class Form extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            shouldShowForm : false
+        this.state = {  
+            shouldShowForm : true
         }
     }
     renderForm = (shouldShowForm) => {
