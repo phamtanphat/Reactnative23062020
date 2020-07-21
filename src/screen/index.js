@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
 import { DimensionApp } from '../unit/dimension'
+import Form from '../component/Form';
 
 export default class Main extends Component {
     constructor(props){

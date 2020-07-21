@@ -13,37 +13,11 @@ export default class Box extends Component {
         console.log("Box")
         return (
             <View style={styles.container}>
-                <Child/>
                 <Text 
                     style={styles.textCount}> 
                     Count : {this.state.count} 
                 </Text>
-                <View style={styles.boxTouchable}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            this.setState({count : this.state.count + 1})
-                        }}
-                        style={styles.touchableIncrease}
-                    >
-                        <Text>Increase</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => {
-                            this.setState({count : this.state.count - 1})
-                        }}
-                        style={styles.touchableDecrease}
-                    >
-                        <Text>Decrease</Text>   
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => {
-                            this.setState({count : 0})
-                        }}
-                        style={styles.touchableReset}
-                    >
-                        <Text>Increase</Text>
-                    </TouchableOpacity>
-                </View>
+                <Child/>
             </View>
         )
     }
@@ -58,23 +32,5 @@ const styles = StyleSheet.create({
         fontSize : 30,
         color : 'red',
         marginBottom : 10   
-    },
-    boxTouchable: {
-        width : '100%',
-        flexDirection : 'row',
-        justifyContent : 'space-around'
-    },
-    touchableIncrease: {
-        backgroundColor : 'green',
-        padding : 10
-    },
-    touchableDecrease: {
-        backgroundColor : 'red',
-        padding : 10    
-    },
-    touchableReset: {
-        backgroundColor : 'yellow',
-        padding : 10
     }
-    
 })
