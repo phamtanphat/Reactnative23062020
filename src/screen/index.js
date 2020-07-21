@@ -98,6 +98,19 @@ export default class Main extends Component {
             )
         }
     }
+    toggleWord = (id) =>{
+        const newWords = this.state.words.map(word => {
+            if (word.id == id){
+                return {...word , isMemorized : !word.isMemorized}
+            }
+            return word
+        })
+        this.setState({words : newWords})
+    }
+    removeWord = (id) => {
+        const newWords = this.state.words.filter(word => word.id != id)
+        this.setState({words : newWords})
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -131,15 +144,7 @@ export default class Main extends Component {
                                 </View>
                                 <View style={styles.flexBoxElement}>
                                     <TouchableOpacity
-                                        onPress={() => {
-                                            const newWords = this.state.words.map(word => {
-                                                if (word.id == item.id){
-                                                    return {...word , isMemorized : !word.isMemorized}
-                                                }
-                                                return word
-                                            })
-                                            this.setState({words : newWords})
-                                        }}
+                                        onPress={() => this.toggleWord(item.id)}
                                         style={
                                             [styles.touchableIsMemorized , 
                                                 {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
@@ -151,10 +156,7 @@ export default class Main extends Component {
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={() => {
-                                            const newWords = this.state.words.filter(word => word.id != item.id)
-                                            this.setState({words : newWords})
-                                        }}
+                                        onPress={() => this.removeWord(item.id)}
                                         style={styles.touchableRemove}>
                                         <Text 
                                             style={styles.textStyleRemove}> 
