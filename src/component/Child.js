@@ -6,9 +6,7 @@ export default class Child extends PureComponent {
         return (
             <View style={styles.boxTouchable}>
                 <TouchableOpacity
-                    onPress={() => {
-                        this.setState({count : this.state.count + 1})
-                    }}
+                    onPress={() => this.props.onIncrease()}
                     style={styles.touchableIncrease}
                 >
                     <Text>Increase</Text>
