@@ -8,6 +8,7 @@ import {
     TextInput ,
     Alert
 } from 'react-native'
+import RNPickerSelect from 'react-native-picker-select';
 import { DimensionApp } from '../unit/dimension'
 
 export default class Main extends Component {
@@ -24,6 +25,7 @@ export default class Main extends Component {
             shouldShowForm : false,
             en : '',
             vn : '',    
+            filterMode: 'Show_All',
         }
     }
     toggleForm = () => {
@@ -100,6 +102,17 @@ export default class Main extends Component {
         return (
             <View style={styles.container}>
                 {this.renderForm()}
+                <View style={styles.containerPickerStyle}>
+                    <RNPickerSelect
+                    value={this.state.filterMode}
+                    onValueChange={(value) => this.setState({filterMode : value})}
+                    items={[
+                        { label: 'Show All', value: 'Show_All' },
+                        { label: 'Show Forgot', value: 'Show_Forgot' },
+                        { label: 'Show Memorized', value: 'Show_Memorized' },
+                    ]}
+                    />
+                </View>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={this.state.words}
@@ -152,9 +165,7 @@ export default class Main extends Component {
                             </View>
                         )
                     }}
-                
                 />
-                
             </View>
         )
     }
@@ -246,6 +257,16 @@ const styles = StyleSheet.create({
         justifyContent : 'space-evenly',
         marginBottom : 10
     },
+    containerPickerStyle: {
+        borderWidth: 1,
+        borderRadius: 1,
+        borderColor: 'black',
+        padding : 20,
+        marginVertical : 10
+      },
+    pickerStyle: {
+        padding: 50,
+      },
 })
 
 
