@@ -111,6 +111,50 @@ export default class Main extends Component {
         const newWords = this.state.words.filter(word => word.id != id)
         this.setState({words : newWords})
     }
+    renderItemWord = (item) => {
+        const { filterMode } = this.state
+        if(filterMode === 'Show_Forgot' && !item.isMemorized){
+            return null
+        } else if (filterMode === 'Show_Memorized' && item.isMemorized){
+            return null
+        } else{
+            return(
+                <View 
+                    style={styles.flexBoxWord}>
+                    <View style={styles.flexBoxElement}>
+                        <Text style={styles.textStyleEn}> {item.en} </Text>
+                        <Text 
+                            style={styles.textStyleVn}> 
+                                {item.isMemorized ? '----' : item.vn} 
+                        </Text>
+                    </View>
+                    <View style={styles.flexBoxElement}>
+                        <TouchableOpacity
+                            onPress={() => this.toggleWord(item.id)}
+                            style={
+                                [styles.touchableIsMemorized , 
+                                    {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
+                                ]
+                            }>
+                            <Text 
+                                style={styles.textStyleMemorized}> 
+                                {item.isMemorized ? 'Forgot' : 'Memorized'}  
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => this.removeWord(item.id)}
+                            style={styles.touchableRemove}>
+                            <Text 
+                                style={styles.textStyleRemove}> 
+                                Remove
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            )
+        }
+       
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -131,42 +175,7 @@ export default class Main extends Component {
                     data={this.state.words}
                     extraData={this.state.words}
                     keyExtractor={(item,index) => index.toString()}
-                    renderItem={({item}) => {
-                        return(
-                            <View 
-                                style={styles.flexBoxWord}>
-                                <View style={styles.flexBoxElement}>
-                                    <Text style={styles.textStyleEn}> {item.en} </Text>
-                                    <Text 
-                                        style={styles.textStyleVn}> 
-                                            {item.isMemorized ? '----' : item.vn} 
-                                    </Text>
-                                </View>
-                                <View style={styles.flexBoxElement}>
-                                    <TouchableOpacity
-                                        onPress={() => this.toggleWord(item.id)}
-                                        style={
-                                            [styles.touchableIsMemorized , 
-                                                {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
-                                            ]
-                                        }>
-                                        <Text 
-                                            style={styles.textStyleMemorized}> 
-                                            {item.isMemorized ? 'Forgot' : 'Memorized'}  
-                                        </Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        onPress={() => this.removeWord(item.id)}
-                                        style={styles.touchableRemove}>
-                                        <Text 
-                                            style={styles.textStyleRemove}> 
-                                            Remove
-                                        </Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        )
-                    }}
+                    renderItem={({item}) => this.renderItemWord(item)}
                 />
             </View>
         )
