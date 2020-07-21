@@ -35,10 +35,12 @@ export default class Main extends Component {
                 <View >
                     <View style={styles.containerTextInput}>
                     <TextInput 
+                        ref={ref => this.textInputEn = ref}
                         onChangeText={text =>  this.state.en = text}
                         placeholder="English"
                         style={styles.textInput}/>
                     <TextInput 
+                        ref={ref => this.textInputVn = ref}
                         onChangeText={text => this.state.vn = text}
                         placeholder="Vietnamese"
                         style={styles.textInput}/>
@@ -47,9 +49,7 @@ export default class Main extends Component {
                         <TouchableOpacity
                             onPress={() => {
                                 const { en , vn } = this.state
-                                if(en.length > 0 || vn.length > 0){
-                                        
-                                }else{
+                                if( !en.length > 0 || !vn.length > 0){
                                     Alert.alert(
                                         "Thong bao",
                                         "Ban chua nhap du thong tin",
@@ -58,6 +58,18 @@ export default class Main extends Component {
                                         ],
                                         { cancelable: false }
                                     )
+                                }else{
+                                    const newWords = Object.assign([],this.state.words)
+                                    const newWord = {
+                                        id : newWords.length + 1,
+                                        en : en,
+                                        vn : vn,
+                                        isMemorized : false
+                                    }
+                                    newWords.unshift(newWord)
+                                    this.setState({words : newWords })
+                                    this.textInputVn.clear()
+                                    this.textInputEn.clear()
                                 }
                             }}
                             style={styles.touchableAddword}
