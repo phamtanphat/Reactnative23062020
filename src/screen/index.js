@@ -4,7 +4,6 @@ import {
     StyleSheet , 
     Alert
 } from 'react-native'
-import { DimensionApp } from '../unit/dimension'
 import Form from '../component/Form';
 import Filter from '../component/Filter';
 import Word from '../component/Word';
@@ -49,7 +48,7 @@ export default class Main extends Component {
             this.setState({words : newWords })
         }
     }
-    toggleWord = (id) =>{
+    onToggleWord = (id) =>{
         const newWords = this.state.words.map(word => {
             if (word.id == id){
                 return {...word , isMemorized : !word.isMemorized}
@@ -58,9 +57,12 @@ export default class Main extends Component {
         })
         this.setState({words : newWords})
     }
-    removeWord = (id) => {
+    onRemoveWord = (id) => {
         const newWords = this.state.words.filter(word => word.id != id)
         this.setState({words : newWords})
+    }
+    onSetFilterMode = (filterMode) =>{
+        this.setState({filterMode})
     }
     render() {
         return (
@@ -70,8 +72,11 @@ export default class Main extends Component {
                     onToggleForm={this.onToggleForm}
                     shouldShowForm={this.state.shouldShowForm}/>
                 <Filter 
+                    onSetFilterMode={this.onSetFilterMode}
                     filterMode={this.state.filterMode}/>
                 <Word 
+                    onRemoveWord={this.onRemoveWord}
+                    onToggleWord={this.onToggleWord}
                     words={this.state.words} 
                     filterMode={this.state.filterMode}/>
             </View>

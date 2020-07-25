@@ -3,15 +3,13 @@ import { StyleSheet, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 export default class Filter extends Component {
-  state = {
-    filterMode: 'Show_All',
-  };
+
   render() {
     return (
       <View style={styles.containerPickerStyle}>
         <RNPickerSelect
           value={this.props.filterMode}
-          onValueChange={(value) => this.setState({filterMode : value})}
+          onValueChange={(value) => this.props.onSetFilterMode(value)}
           items={[
               { label: 'Show All', value: 'Show_All' },
               { label: 'Show Forgot', value: 'Show_Forgot' },

@@ -13,6 +13,8 @@ export default class Word extends Component {
                 renderItem={({item}) => (
                     <WordItem 
                         item={item} 
+                        onRemoveWord={this.props.onRemoveWord}
+                        onToggleWord={this.props.onToggleWord}
                         filterMode={this.props.filterMode}/>)
                 }
             />
