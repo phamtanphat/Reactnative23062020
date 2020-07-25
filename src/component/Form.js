@@ -2,22 +2,37 @@ import React, { PureComponent } from 'react'
 import { Text, View , TextInput , StyleSheet , TouchableOpacity} from 'react-native'
 
 export default class Form extends PureComponent {
+    constructor(props){
+        super(props);
+        this.state= {
+            en : '',
+            vn : '',    
+        }
+    }
+    addWord = () => {
+        this.props.onAddWord(this.state.en ,this.state.vn)
+        this.textInputVn.clear()
+        this.textInputEn.clear()
+    }
     renderForm = (shouldShowForm) => {
         if (shouldShowForm){
             return (
                 <View >
                     <View style={styles.containerTextInput}>
                     <TextInput 
+                        ref={ref => {this.textInputEn = ref}}
                         onChangeText={text =>  this.state.en = text}
                         placeholder="English"
                         style={styles.textInput}/>
                     <TextInput 
+                        ref={ref => {this.textInputVn = ref}}
                         onChangeText={text => this.state.vn = text}
                         placeholder="Vietnamese"
                         style={styles.textInput}/>
                     </View>
                     <View style={styles.containerTouchable}>
                         <TouchableOpacity
+                            onPress={this.addWord}
                             style={styles.touchableAddword}
                         >
                             <Text style={styles.textTouchable}>Add word</Text>
@@ -43,6 +58,7 @@ export default class Form extends PureComponent {
         }
     }
     render() {
+        console.log("Form render")
         return this.renderForm(this.props.shouldShowForm)
     }
 }

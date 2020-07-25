@@ -20,17 +20,14 @@ export default class Main extends Component {
                 {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
                 {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},
             ],
-            shouldShowForm : false,
-            en : '',
-            vn : '',    
+            shouldShowForm : false,   
             filterMode: 'Show_All',
         }
     }
     onToggleForm = () => {
         this.setState({shouldShowForm : !this.state.shouldShowForm})
     }
-    addWord = () => {
-        const { en , vn } = this.state
+    onAddWord = (en , vn) => {
         if( !en.length > 0 || !vn.length > 0){
             Alert.alert(
                 "Thong bao",
@@ -50,8 +47,6 @@ export default class Main extends Component {
             }
             newWords.unshift(newWord)
             this.setState({words : newWords })
-            this.textInputVn.clear()
-            this.textInputEn.clear()
         }
     }
     toggleWord = (id) =>{
@@ -71,6 +66,7 @@ export default class Main extends Component {
         return (
             <View style={styles.container}>
                 <Form 
+                    onAddWord={this.onAddWord}
                     onToggleForm={this.onToggleForm}
                     shouldShowForm={this.state.shouldShowForm}/>
                 <Filter 
