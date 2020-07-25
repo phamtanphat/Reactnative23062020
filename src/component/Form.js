@@ -1,13 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Text, View , TextInput , StyleSheet , TouchableOpacity} from 'react-native'
 
-export default class Form extends Component {
-    constructor(props){
-        super(props)
-        this.state = {  
-            shouldShowForm : true
-        }
-    }
+export default class Form extends PureComponent {
     renderForm = (shouldShowForm) => {
         if (shouldShowForm){
             return (
@@ -29,6 +23,7 @@ export default class Form extends Component {
                             <Text style={styles.textTouchable}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={this.props.onToggleForm}
                             style={styles.touchableCancel}
                         >
                             <Text style={styles.textTouchable}>Cancel</Text>
@@ -41,7 +36,7 @@ export default class Form extends Component {
             return (
                 <TouchableOpacity
                     style={styles.buttonOpenForm}
-                    onPress={this.toggleForm}>
+                    onPress={this.props.onToggleForm}>
                     <Text style={styles.textOpenForm}>+</Text>
                 </TouchableOpacity>
             )
