@@ -4,39 +4,47 @@ import { DimensionApp } from '../unit/dimension'
 
 export default class WordItem extends PureComponent {
     render() {
-        const {item} = this.props
-        return (
-            <View 
-                style={styles.flexBoxWord}>
-                <View style={styles.flexBoxElement}>
-                    <Text style={styles.textStyleEn}> {item.en} </Text>
-                    <Text 
-                        style={styles.textStyleVn}> 
-                            {item.isMemorized ? '----' : item.vn} 
-                    </Text>
-                </View>
-                <View style={styles.flexBoxElement}>
-                    <TouchableOpacity
-                        style={
-                            [styles.touchableIsMemorized , 
-                                {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
-                            ]
-                        }>
+        const { filterMode , item } = this.props
+        if(filterMode === 'Show_Forgot' && !item.isMemorized){
+            return null
+        } else if (filterMode === 'Show_Memorized' && item.isMemorized){
+            return null
+        } else{
+            return(
+                <View 
+                    style={styles.flexBoxWord}>
+                    <View style={styles.flexBoxElement}>
+                        <Text style={styles.textStyleEn}> {item.en} </Text>
                         <Text 
-                            style={styles.textStyleMemorized}> 
-                            {item.isMemorized ? 'Forgot' : 'Memorized'}  
+                            style={styles.textStyleVn}> 
+                                {item.isMemorized ? '----' : item.vn} 
                         </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.touchableRemove}>
-                        <Text 
-                            style={styles.textStyleRemove}> 
-                            Remove
-                        </Text>
-                    </TouchableOpacity>
+                    </View>
+                    <View style={styles.flexBoxElement}>
+                        <TouchableOpacity
+                            onPress={() => this.toggleWord(item.id)}
+                            style={
+                                [styles.touchableIsMemorized , 
+                                    {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
+                                ]
+                            }>
+                            <Text 
+                                style={styles.textStyleMemorized}> 
+                                {item.isMemorized ? 'Forgot' : 'Memorized'}  
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => this.removeWord(item.id)}
+                            style={styles.touchableRemove}>
+                            <Text 
+                                style={styles.textStyleRemove}> 
+                                Remove
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-        )
+            )
+        }
     }
 }
 

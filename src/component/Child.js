@@ -12,17 +12,13 @@ export default class Child extends PureComponent {
                     <Text>Increase</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => {
-                        this.setState({count : this.state.count - 1})
-                    }}
+                    onPress={() => this.props.onDecrease()}
                     style={styles.touchableDecrease}
                 >
                     <Text>Decrease</Text>   
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => {
-                        this.setState({count : 0})
-                    }}
+                    onPress={() => this.props.onReset()}
                     style={styles.touchableReset}
                 >
                     <Text>Increase</Text>

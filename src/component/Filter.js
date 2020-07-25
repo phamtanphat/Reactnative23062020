@@ -10,7 +10,7 @@ export default class Filter extends Component {
     return (
       <View style={styles.containerPickerStyle}>
         <RNPickerSelect
-          value={this.state.filterMode}
+          value={this.props.filterMode}
           onValueChange={(value) => this.setState({filterMode : value})}
           items={[
               { label: 'Show All', value: 'Show_All' },
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     borderColor: 'black',
     padding : 20,
+    marginBottom : 5
   },
   pickerStyle: {
     padding: 50,
