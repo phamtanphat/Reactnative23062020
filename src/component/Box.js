@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View , StyleSheet , TouchableOpacity} from 'react-native'
 import Child from './Child';
+import { connect } from 'react-redux'
 
-export default class Box extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            count : 0
-        }
-    }
+class Box extends Component {
 
     onIncrease = () => {
         this.setState({count : this.state.count + 1})
@@ -25,9 +20,9 @@ export default class Box extends Component {
             <View style={styles.container}>
                 <Text 
                     style={styles.textCount}> 
-                    Count : {this.state.count} 
+                    Count : {this.props.count} 
                 </Text>
-                <Child 
+                <Child
                     onReset={this.onReset}
                     onDecrease={this.onDecrease}
                     onIncrease={this.onIncrease}/>
@@ -47,3 +42,14 @@ const styles = StyleSheet.create({
         marginBottom : 10   
     }
 })
+
+// Cach viet tuong minh
+
+const mapStateToProps = function(store){
+    return {count : store.count}
+}
+
+export default connect(mapStateToProps)(Box)
+
+// Cach viet nhanh
+// export default connect(store => ({count : store.count}))(Box)
