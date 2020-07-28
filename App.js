@@ -22,6 +22,9 @@ const defaultStore = {
 
 // 1 : Tao ra store
 const store = createStore(function(state = defaultStore , action){
+    if (action.type === 'TOGGLE_FORM'){
+      return {...state , shouldShowForm : !state.shouldShowForm}
+    }
     return state
 })
 

@@ -16,6 +16,7 @@ class Form extends PureComponent {
         this.textInputEn.clear()
     }
     renderForm = (shouldShowForm) => {
+        const {dispatch} = this.props
         if (shouldShowForm){
             return (
                 <View >
@@ -39,7 +40,7 @@ class Form extends PureComponent {
                             <Text style={styles.textTouchable}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={this.props.onToggleForm}
+                            onPress={() => dispatch({type : 'TOGGLE_FORM'})}
                             style={styles.touchableCancel}
                         >
                             <Text style={styles.textTouchable}>Cancel</Text>
@@ -52,7 +53,7 @@ class Form extends PureComponent {
             return (
                 <TouchableOpacity
                     style={styles.buttonOpenForm}
-                    onPress={this.props.onToggleForm}>
+                    onPress={() => dispatch({type : 'TOGGLE_FORM'})}>
                     <Text style={styles.textOpenForm}>+</Text>
                 </TouchableOpacity>
             )

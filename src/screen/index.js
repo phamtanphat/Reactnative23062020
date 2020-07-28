@@ -10,9 +10,6 @@ import Word from '../component/Word';
 import {connect} from 'react-redux';
 
 class Main extends Component {
-    onToggleForm = () => {
-        this.setState({shouldShowForm : !this.state.shouldShowForm})
-    }
     onAddWord = (en , vn) => {
         if( !en.length > 0 || !vn.length > 0){
             Alert.alert(
