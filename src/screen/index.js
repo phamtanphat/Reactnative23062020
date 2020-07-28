@@ -7,22 +7,9 @@ import {
 import Form from '../component/Form';
 import Filter from '../component/Filter';
 import Word from '../component/Word';
+import {connect} from 'react-redux';
 
-export default class Main extends Component {
-    constructor(props){
-        super(props);
-        this.state= {
-            words: [
-                {id : 1 ,en : 'One' , vn : 'Mot' , isMemorized : false},
-                {id : 2 ,en : 'Two' , vn : 'Hai' , isMemorized : true},
-                {id : 3 ,en : 'Three' , vn : 'Ba' , isMemorized : false},
-                {id : 4 ,en : 'Four' , vn : 'Bon' , isMemorized : true},
-                {id : 5 ,en : 'Five' , vn : 'Nam' , isMemorized : false},
-            ],
-            shouldShowForm : false,   
-            filterMode: 'Show_All',
-        }
-    }
+class Main extends Component {
     onToggleForm = () => {
         this.setState({shouldShowForm : !this.state.shouldShowForm})
     }
@@ -67,18 +54,9 @@ export default class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Form 
-                    onAddWord={this.onAddWord}
-                    onToggleForm={this.onToggleForm}
-                    shouldShowForm={this.state.shouldShowForm}/>
-                <Filter 
-                    onSetFilterMode={this.onSetFilterMode}
-                    filterMode={this.state.filterMode}/>
-                <Word 
-                    onRemoveWord={this.onRemoveWord}
-                    onToggleWord={this.onToggleWord}
-                    words={this.state.words} 
-                    filterMode={this.state.filterMode}/>
+                <Form />
+                <Filter />
+                <Word />
             </View>
         )
     }
@@ -91,5 +69,6 @@ const styles = StyleSheet.create({
     }
 })
 
+export default connect()(Main)
 
 

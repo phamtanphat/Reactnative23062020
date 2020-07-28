@@ -4,28 +4,15 @@ import Child from './Child';
 import { connect } from 'react-redux'
 
 class Box extends Component {
-
-    onIncrease = () => {
-        this.setState({count : this.state.count + 1})
-    }
-    onDecrease = () => {
-        this.setState({count : this.state.count - 1})
-    }
-    onReset = () => {
-        this.setState({count : 0})
-    }
-
     render() {
+        console.log("Render Box")
         return (
             <View style={styles.container}>
                 <Text 
                     style={styles.textCount}> 
                     Count : {this.props.count} 
                 </Text>
-                <Child
-                    onReset={this.onReset}
-                    onDecrease={this.onDecrease}
-                    onIncrease={this.onIncrease}/>
+                <Child />
             </View>
         )
     }
@@ -44,7 +31,6 @@ const styles = StyleSheet.create({
 })
 
 // Cach viet tuong minh
-
 const mapStateToProps = function(store){
     return {count : store.count}
 }

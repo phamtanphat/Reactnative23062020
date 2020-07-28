@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Text, View , TextInput , StyleSheet , TouchableOpacity} from 'react-native'
+import {connect} from 'react-redux';
 
-export default class Form extends PureComponent {
+class Form extends PureComponent {
     constructor(props){
         super(props);
         this.state= {
@@ -58,7 +59,6 @@ export default class Form extends PureComponent {
         }
     }
     render() {
-        console.log("Form render")
         return this.renderForm(this.props.shouldShowForm)
     }
 }
@@ -108,3 +108,9 @@ const styles = StyleSheet.create({
         marginBottom : 10
     },
 })
+
+const mapStateToProps = function(store){
+    return {shouldShowForm : store.shouldShowForm}
+}
+
+export default connect(mapStateToProps)(Form);
