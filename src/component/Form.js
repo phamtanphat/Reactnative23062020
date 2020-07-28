@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Text, View , TextInput , StyleSheet , TouchableOpacity} from 'react-native'
+import { Text, View , TextInput , StyleSheet , TouchableOpacity ,Alert} from 'react-native'
 import {connect} from 'react-redux';
 
 class Form extends PureComponent {
@@ -11,7 +11,26 @@ class Form extends PureComponent {
         }
     }
     addWord = () => {
-        this.props.onAddWord(this.state.en ,this.state.vn)
+        const {en , vn} = this.state
+        if( !en.length > 0 || !vn.length > 0){
+            Alert.alert(
+                "Thong bao",
+                "Ban chua nhap du thong tin",
+                [
+                    {text : 'Da hieu' , style : 'cancel'},
+                ],
+                { cancelable: false }
+            )
+        }else{
+            const newWord = {
+                id : Math.random(),
+                en : en,
+                vn : vn,
+                isMemorized : false
+            }
+            this.props.dispatch({type : 'ADD_WORD' , newWord})
+        }
+        this.setState({vn : '' , en : ''})
         this.textInputVn.clear()
         this.textInputEn.clear()
     }

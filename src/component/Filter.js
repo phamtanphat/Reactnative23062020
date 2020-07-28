@@ -4,13 +4,12 @@ import RNPickerSelect from 'react-native-picker-select';
 import {connect} from 'react-redux';
 
 class Filter extends Component {
-
   render() {
     return (
       <View style={styles.containerPickerStyle}>
         <RNPickerSelect
           value={this.props.filterMode}
-          onValueChange={(value) => this.props.onSetFilterMode(value)}
+          onValueChange={(value) => this.props.dispatch({type : 'SET_FILTER_MODE' , filterMode : value})}
           items={[
               { label: 'Show All', value: 'Show_All' },
               { label: 'Show Forgot', value: 'Show_Forgot' },

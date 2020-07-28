@@ -1,8 +1,15 @@
 import React, { PureComponent } from 'react'
 import { Text, View , StyleSheet , TouchableOpacity } from 'react-native'
 import { DimensionApp } from '../unit/dimension'
+import {connect} from 'react-redux';
 
-export default class WordItem extends PureComponent {
+class WordItem extends PureComponent {
+    toggleWord = (id) =>{
+        this.props.dispatch({type : 'TOGGLE_WORD' , id})
+    }
+    removeWord = (id) => {
+        this.props.dispatch({type : 'REMOVE_WORD' , id})
+    }
     render() {
         const { filterMode , item } = this.props
         if(filterMode === 'Show_Forgot' && !item.isMemorized){
@@ -22,7 +29,7 @@ export default class WordItem extends PureComponent {
                     </View>
                     <View style={styles.flexBoxElement}>
                         <TouchableOpacity
-                            onPress={() => this.props.onToggleWord(item.id)}
+                            onPress={() => this.toggleWord(item.id)}
                             style={
                                 [styles.touchableIsMemorized , 
                                     {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
@@ -34,7 +41,7 @@ export default class WordItem extends PureComponent {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => this.props.onRemoveWord(item.id)}
+                            onPress={() => this.removeWord(item.id)}
                             style={styles.touchableRemove}>
                             <Text 
                                 style={styles.textStyleRemove}> 
@@ -91,6 +98,9 @@ const styles = StyleSheet.create({
         fontSize : DimensionApp.getWidth() / 12 
     }
 })
+
+
+export default connect()(WordItem)
 
 
 
