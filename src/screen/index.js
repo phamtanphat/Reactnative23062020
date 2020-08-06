@@ -9,6 +9,30 @@ import Word from '../component/Word';
 import {connect} from 'react-redux';
 
 class Main extends Component {
+
+    componentDidMount(){
+        const URL = 'https://servertuvung23062020.herokuapp.com/word'
+        // Xu ly cho get
+        // fetch(URL,{method : 'GET'})
+        // .then(response => response.json())
+        // .then(value => console.log(value))
+
+        // Xu ly cho post
+        fetch(URL,{
+            method : 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                en : "Three",
+                vn : "Ba"
+            })
+        })
+        .then(response => response.json())
+        .then(value => console.log(value))
+    }
+
     render() {
         return (
             <View style={styles.container}>
