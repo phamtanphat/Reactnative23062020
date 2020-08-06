@@ -30,14 +30,13 @@ class Form extends PureComponent {
                 vn : vn,
                 isMemorized : false
             }
-            this.props.dispatch({type : 'ADD_WORD' , newWord})
+            this.props.addWord(newWord)
         }
         this.setState({vn : '' , en : ''})
         this.textInputVn.clear()
         this.textInputEn.clear()
     }
     renderForm = (shouldShowForm) => {
-        const {dispatch} = this.props
         if (shouldShowForm){
             return (
                 <View >

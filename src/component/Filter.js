@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import {connect} from 'react-redux';
+import * as actionCreators from '../redux/action/actionCreators'
 
 class Filter extends Component {
   render() {
@@ -9,7 +10,7 @@ class Filter extends Component {
       <View style={styles.containerPickerStyle}>
         <RNPickerSelect
           value={this.props.filterMode}
-          onValueChange={(value) => this.props.dispatch({type : 'SET_FILTER_MODE' , filterMode : value})}
+          onValueChange={(value) => this.props.setFilterMode(value)}
           items={[
               { label: 'Show All', value: 'Show_All' },
               { label: 'Show Forgot', value: 'Show_Forgot' },
@@ -37,4 +38,4 @@ const mapStateToProps = function(store){
   return {filterMode : store.filterMode}
 }
 
-export default connect(mapStateToProps)(Filter);
+export default connect(mapStateToProps,actionCreators)(Filter);
