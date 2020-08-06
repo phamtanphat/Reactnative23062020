@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Text, View , TextInput , StyleSheet , TouchableOpacity ,Alert} from 'react-native'
 import {connect} from 'react-redux';
+import * as actionCreators from '../redux/action/actionCreators';
 
 class Form extends PureComponent {
+   
     constructor(props){
         super(props);
         this.state= {
@@ -59,7 +61,7 @@ class Form extends PureComponent {
                             <Text style={styles.textTouchable}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => dispatch({type : 'TOGGLE_FORM'})}
+                            onPress={() => this.props.toggleForm()}
                             style={styles.touchableCancel}
                         >
                             <Text style={styles.textTouchable}>Cancel</Text>
@@ -72,7 +74,7 @@ class Form extends PureComponent {
             return (
                 <TouchableOpacity
                     style={styles.buttonOpenForm}
-                    onPress={() => dispatch({type : 'TOGGLE_FORM'})}>
+                    onPress={() => this.props.toggleForm()}>
                     <Text style={styles.textOpenForm}>+</Text>
                 </TouchableOpacity>
             )
@@ -133,4 +135,4 @@ const mapStateToProps = function(store){
     return {shouldShowForm : store.shouldShowForm}
 }
 
-export default connect(mapStateToProps)(Form);
+export default connect(mapStateToProps,actionCreators)(Form);
