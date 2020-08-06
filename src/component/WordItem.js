@@ -24,7 +24,7 @@ class WordItem extends PureComponent {
                     </View>
                     <View style={styles.flexBoxElement}>
                         <TouchableOpacity
-                            onPress={() => this.props.toggleWord(item.id)}
+                            onPress={() => this.props.toggleWord(item._id)}
                             style={
                                 [styles.touchableIsMemorized , 
                                     {backgroundColor : item.isMemorized ? '#2BA848' : '#DC3545'}
@@ -36,7 +36,7 @@ class WordItem extends PureComponent {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => this.props.removeWord(item.id)}
+                            onPress={() => this.props.removeWord(item._id)}
                             style={styles.touchableRemove}>
                             <Text 
                                 style={styles.textStyleRemove}> 
