@@ -7,14 +7,16 @@ import Form from '../component/Form';
 import Filter from '../component/Filter';
 import Word from '../component/Word';
 import {connect} from 'react-redux';
+import ListProduct from './Product/ListProduct';
 
 class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Form />
+                {/* <Form />
                 <Filter />
-                <Word />
+                <Word /> */}
+                <ListProduct/>
             </View>
         )
     }
@@ -23,7 +25,7 @@ class Main extends Component {
 const styles = StyleSheet.create({
     container: {
        flex : 1,
-       marginHorizontal: 5
+       marginHorizontal: 5,
     }
 })
 
